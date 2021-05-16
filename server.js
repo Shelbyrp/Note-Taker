@@ -25,7 +25,7 @@ res.sendFile(path.join(__dirname, './db/db.json')));
 
 app.post('/api/notes', (req, res) => {  
     const createNote = req.body;
-    req.body.id = id.nanoid(10);
+    req.body.id = id.nanoid(5);
   
     fs.readFile("./db/db.json", (err, data) => {
       if (err) throw err;
@@ -36,7 +36,6 @@ app.post('/api/notes', (req, res) => {
         JSON.stringify(newNote),
         function (err) {
           if (err) throw err;
-          console.log("No note was created");
         }
       );
     });
