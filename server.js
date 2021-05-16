@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
 
@@ -23,24 +23,27 @@ res.sendFile(path.join(__dirname, './public/notes.html')));
 app.get('/api/notes', (req, res) => 
 res.sendFile(path.join(__dirname, './db/db.json')));
 
-app.post('/api/notes', (req, res) => {
-    saveNote = req.body;
+app.post('/api/notes', (req, res) => {  
+    const createNote = req.body;
     req.body.id = id.nanoid(10);
   
-    fs.readFile('./db/db.json', (error, data) => {
-        if (error) throw error;
-        let noteArray = JSON.parse(data)
-        noteArray.push(saveNote)
-
-        fs.writeFile("./db/db.json",
-            JSON.stringify(noteArray),
-            function (error) {
-                if (error) throw error;
-                console.log("A new note has been created.");
-            }
-        )
-    })
-});
+    fs.readFile("./db/db.json", (err, data) => {
+      if (err) throw err;
+      let newNote = JSON.parse(data);
+      newNote.push(createNote);
+  
+      fs.writeFile("./db/db.json",
+        JSON.stringify(newNote),
+        function (err) {
+          if (err) throw err;
+          console.log("No note was created");
+        }
+      );
+    });
+    res.json({
+      status: "success",
+    });
+  });
 
 app.listen(PORT, () => 
 console.log(`Server is listing to ${PORT}`));
