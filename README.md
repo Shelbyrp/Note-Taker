@@ -8,9 +8,10 @@ This application is called the Note Taker and it can be used to write and save n
 
 The application’s front end was already been created. So a back end has been created to, connect the two, and then deploy the entire application to Heroku.
 
-Link to the Heroku application: ![view app](https://evening-citadel-18697.herokuapp.com/)view app. 
+Link to the Heroku application: [view app](https://evening-citadel-18697.herokuapp.com/). 
 
-![DEMO Deployed on Heroku](./Develop/images/generatordemo.gif)
+![Final result appears as:](./public/assets/img/notetaker1.png)
+![Final result appears as:](./public/assets/img/notetaker2.png)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -32,8 +33,7 @@ npm install
 ## Usage
 Once the files have been pull down to your preferred repository, run this application by inputting 'npm start' into your bash terminal. The server will start. You can then view the application in the default browser.
 
-![Final result appears as:](.)
-![Final result appears as:](.)
+Click on the get started button and enter in your note. Once you've entered in text, a save icon will appear in the top right corner. Click on this once you've completed your note.
 
 ## License
 This project is licensed by the [MIT](https://opensource.org/licenses/MIT) license
