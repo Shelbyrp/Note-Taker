@@ -44,5 +44,25 @@ app.post('/api/notes', (req, res) => {
     });
   });
 
+
+  app.delete("/api/notes/:id", (req, res) => {
+
+    const removeNote = req.params.id;
+  
+    fs.readFile("./db/db.json", (err, data) => {
+      if (err) throw err;
+      let createNote = JSON.parse(data);
+      const newArray = createNote.filter((note) => note.id !== removeNote);
+      fs.writeFile(
+        "./db/db.json",
+        JSON.stringify(newArray),
+        function (err) {
+          if (err) throw err;
+        }
+      );
+    });
+    res.send({ type: "delete" });
+  });
+
 app.listen(PORT, () => 
 console.log(`Server is listing to ${PORT}`));
