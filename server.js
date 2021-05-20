@@ -9,16 +9,16 @@ const id = require('nanoid');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle URL parameters which come after the question mark
 // app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./public"));
 
-app.get('/', (req, res) => 
-res.sendFile(path.join(__dirname, './public/index.html')));
+// app.get('/', (req, res) => 
+// res.sendFile(path.join(__dirname, './public/index.html')));
 
-app.get('/notes', (req, res) => 
-res.sendFile(path.join(__dirname, './public/notes.html')));
+// app.get('/notes', (req, res) => 
+// res.sendFile(path.join(__dirname, './public/notes.html')));
 
 app.get('/api/notes', (req, res) => 
 res.sendFile(path.join(__dirname, './db/db.json')));
@@ -46,9 +46,7 @@ app.post('/api/notes', (req, res) => {
 
 
   app.delete("/api/notes/:id", (req, res) => {
-
-    const removeNote = req.params.id;
-  
+    const removeNote = req.params.id;  
     fs.readFile("./db/db.json", (err, data) => {
       if (err) throw err;
       let createNote = JSON.parse(data);
